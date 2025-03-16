@@ -85,6 +85,10 @@ npm start
 🔹 Real-time order tracking
 🔹 User reviews and ratings
 
+## Deployed with Render
+website - https://food-delivery-frontend-42lk.onrender.com
+admin panel - https://food-delivery-admin-q9pu.onrender.com
+
 ## 📌 Conclusion
 This project provides a fully functional **food ordering system** built with the **MERN stack** and **Stripe payment integration**. Future improvements include **deploying** and adding **real-time features**. Contributions are welcome!
 
