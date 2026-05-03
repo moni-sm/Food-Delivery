@@ -1,31 +1,64 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --bg-dark: #05070a;
+  --bg-gradient: radial-gradient(circle at 50% 0%, #1c2331 0%, #05070a 100%);
+  --text-main: #ffffff;
+  --text-muted: #94a3b8;
+  --primary: #ff4757;
+  --primary-glow: rgba(255, 71, 87, 0.4);
+  --glass-bg: rgba(255, 255, 255, 0.02);
+  --glass-border: rgba(255, 255, 255, 0.05);
+  --card-bg: rgba(20, 25, 35, 0.6);
+}
 
 *{
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: Outfit;
-  scroll-behavior: smooth ;
-}
-body{
-  min-height: 100vh;
+  font-family: 'Inter', 'Outfit', sans-serif;
+  scroll-behavior: smooth;
 }
 
-a{
+body {
+  min-height: 100vh;
+  background: var(--bg-dark);
+  background-image: var(--bg-gradient);
+  color: var(--text-main);
+  overflow-x: hidden;
+  line-height: 1.5;
+}
+
+a {
   text-decoration: none;
   color: inherit;
 }
 
-.app{
-  width: 90%;
+.app {
+  width: 85%; /* Slightly narrower for a more centered, premium feel */
   margin: auto;
+  position: relative;
 }
 
-@keyframes fadeIn {
-  0%{
-    opacity: 0;
+/* Sophisticated Reveal Animation */
+@keyframes fadeInUp {
+  from { 
+    opacity: 0; 
+    transform: translateY(20px); 
   }
-  100%{
-    opacity: 1;
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
   }
+}
+
+.app > * {
+  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+@keyframes pulse-glow {
+  0% { box-shadow: 0 0 0 0 var(--primary-glow); }
+  70% { box-shadow: 0 0 20px 10px rgba(255, 71, 87, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 71, 87, 0); }
 }

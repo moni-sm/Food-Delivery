@@ -1,8 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Fotter.css'
 import { assets } from '../../assets/assets'
 
 const Fotter = () => {
+  const [showPopup, setShowPopup] = useState(false)
+
+  const handleWhatsAppClick = () => {
+    setShowPopup(true)
+    window.setTimeout(() => setShowPopup(false), 3000)
+  }
+
   return (
     <div className='footer' id='footer'>
         <div className="footer-content">
@@ -27,11 +34,26 @@ const Fotter = () => {
             <div className="footer-content-right">
                 <h2>Get in touch</h2>
                 <ul>
-                    <li>+91-908765432</li>
-                    <li>info@tomato.com</li>
+                    <li>
+                      <a
+                        href='https://wa.me/919880966185?text=Hi%20Tomato%20Team,%20I%20want%20to%20contact%20you'
+                        target='_blank'
+                        rel='noreferrer'
+                        className='footer-contact-link'
+                        onClick={handleWhatsAppClick}
+                      >
+                        WhatsApp: 9880966185
+                      </a>
+                    </li>
+                    <li><a href='mailto:info@tomato.com' className='footer-contact-link'>info@tomato.com</a></li>
                 </ul>
             </div>
         </div>
+        {showPopup && (
+          <div className='footer-popup'>
+            WhatsApp chat opened. Message was sent successfully.
+          </div>
+        )}
         <hr />
         <p className='footer-copyright'>
             Copyright 2024  Tomato.com - All Right Reserved.

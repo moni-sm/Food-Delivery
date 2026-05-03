@@ -1,57 +1,78 @@
-.header{
-    height: 34vw;
-    margin: 30px auto;
+.header {
+    height: 38vw;
+    margin: 40px 0;
     background: url('/header_img.png') no-repeat;
-    background-size: contain;
+    background-size: cover;
+    background-position: center;
     position: relative;
+    border-radius: 32px;
+    overflow: hidden;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.4);
 }
 
-.header-contents{
+.header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(5, 7, 10, 0.8) 0%, rgba(5, 7, 10, 0.1) 100%);
+    z-index: 1;
+}
+
+.header-contents {
     position: absolute;
     display: flex;
     flex-direction: column;
-    align-items: start;
+    align-items: flex-start;
     gap: 1.5vw;
     max-width: 50%;
-    bottom: 10%;
+    bottom: 15%;
     left: 6vw;
-    animation: fadeIn 3s;
-}
-.header-contents h2{
-    font-weight: 500;
-    color: white;
-    font-size: max(4.5vw,22px);
-}
-.header-contents p{
-    color: white;
-    font-size: 1vw;
-}
-.header-contents button{
-    border: none;
-    color: #747474;
-    font-weight: 500;
-    padding: 1vw 2.1vw;
-    background-color: white;
-    font-size: max(1vw,13px);
-    border-radius: 50px;
+    z-index: 2;
+    animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@media ( max-width: 1050px) {
-   .header{
-    height: 38vw;
-   }
-   .header-contents{
-    max-width: 45%;
-   }
+.header-contents h2 {
+    font-weight: 800;
+    color: white;
+    font-size: max(4.5vw, 32px);
+    line-height: 1.1;
+    letter-spacing: -2px;
 }
-@media ( max-width: 750px) {
-    .header-contents{
-     max-width: 55%;
+
+.header-contents p {
+    color: #e2e8f0;
+    font-size: 1.1vw;
+    line-height: 1.6;
+    font-weight: 400;
+    max-width: 90%;
+}
+
+.header-contents button {
+    border: none;
+    color: white;
+    font-weight: 700;
+    padding: 1.2vw 3vw;
+    background: var(--primary);
+    font-size: max(1vw, 16px);
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 15px 30px var(--primary-glow);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    margin-top: 1vw;
+}
+
+.header-contents button:hover {
+    transform: translateY(-5px);
+    background: #ff6b81;
+    box-shadow: 0 20px 40px var(--primary-glow);
+}
+
+@media (max-width: 750px) {
+    .header-contents {
+        max-width: 80%;
+        bottom: 10%;
     }
-    .header-contents p{
+    .header-contents p {
         display: none;
     }
-    .header-contents button{
-        padding: 2vw,4vw;
-    }
- }
+}

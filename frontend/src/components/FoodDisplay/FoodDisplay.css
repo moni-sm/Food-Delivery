@@ -1,14 +1,20 @@
 .food-display{
-    margin-top: 30px;
+    margin-top: 40px;
+    perspective: 1200px;
 }
 .food-display h2{
-    font-size: max(2vw,24px);
-    font-weight:600;
+    font-size: max(2.5vw,26px);
+    font-weight: 800;
+    color: var(--text-main);
+    text-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    letter-spacing: -0.5px;
+    margin-bottom: 20px;
 }
 .food-display-list{
     display: grid;
-    grid-template-columns: repeat(auto-fill,minmax(240px,1fr));
+    grid-template-columns: repeat(auto-fill,minmax(260px,1fr));
     margin-top: 30px;
-    gap: 30px;
-    row-gap: 50px;
+    gap: 40px;
+    row-gap: 60px;
+    transform-style: preserve-3d;
 }

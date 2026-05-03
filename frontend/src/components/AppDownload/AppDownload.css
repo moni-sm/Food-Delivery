@@ -3,22 +3,35 @@
     margin-top: 100px;
     font-size: max(3vw,20px);
     text-align: center;
-    font-weight: 500;
+    font-weight: 800;
+    color: var(--text-main);
+    perspective: 1000px;
+}
+.app-download p {
+    text-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    margin-bottom: 20px;
+    letter-spacing: -0.5px;
 }
 .app-download-platforms{
     display: flex;
     justify-content: center;
-    gap: max(2vw,10px);
+    gap: max(2vw,20px);
     margin-top: 40px;
+    transform-style: preserve-3d;
 }
 
 .app-download-platforms img{
     width: max(30vw,120px);
     max-width: 180px;
-    transition: 0.5s;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    filter: brightness(0.9);
 }
 
 .app-download-platforms img:hover{
-   transform: scale(1.05);
+   transform: scale(1.15) translateZ(30px) translateY(-10px);
+   box-shadow: 0 15px 30px rgba(255, 255, 255, 0.1), 0 0 20px var(--primary-glow);
+   filter: brightness(1.1);
 }

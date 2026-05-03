@@ -1,6 +1,8 @@
 import mongoose from "mongoose"
 
 export const connectDB = async ()=>{
-    await mongoose.connect('mongodb+srv://MonikaSM:Monika_1009@cluster0.tmuic.mongodb.net/food-delivery')
+    const dbUri = process.env.Mongo_DB;
+    await mongoose.connect(dbUri)
     .then(()=>console.log("DB Connected"))
+    .catch((err)=>console.error("DB Connection Error:", err.message));
 }

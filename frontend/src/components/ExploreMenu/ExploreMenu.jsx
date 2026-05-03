@@ -10,7 +10,10 @@ const ExploreMenu = ({category,setCategory}) => {
         <div className="explore-menu-list">
             {menu_list.map((items,index)=>{
                 return (
-                    <div onClick={()=>setCategory(prev=>prev===items.menu_name?"All":items.menu_name)} key={index} className='explore-menu-list-item'>
+                    <div onClick={()=>{
+                        setCategory(prev=>prev===items.menu_name?"All":items.menu_name);
+                        document.getElementById('food-display')?.scrollIntoView({behavior: 'smooth'});
+                    }} key={index} className='explore-menu-list-item'>
                         <img className={category===items.menu_name?"active":""} src={items.menu_image} alt="" />
                         <p>{items.menu_name}</p>
                     </div>                
