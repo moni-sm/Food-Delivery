@@ -10,37 +10,34 @@ import orderRouter from "./routes/orderRoute.js"
 const app = express()
 const port = process.env.PORT || 4000;
 
-// 1. Enable standard CORS
-app.use(cors());
+// ✅ Proper CORS (ONLY THIS, nothing else)
+app.use(cors({
+    origin: "https://food-delivery-eta-lilac.vercel.app",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization", "token"],
+    credentials: true
+}));
 
-// 2. Add manual CORS headers to EVERY response (Double-protection)
-app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization, token");
-    
-    // 3. Manually handle preflight OPTIONS requests
-    if (req.method === "OPTIONS") {
-        return res.status(200).end();
-    }
-    next();
-});
-
+// Middleware
 app.use(express.json())
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }))
 
+// DB Connection
 connectDB();
 
+// Routes
 app.use("/api/food", foodRouter)
 app.use("/images", express.static('uploads'))
 app.use("/api/user", userRouter)
 app.use("/api/cart", cartRouter)
 app.use("/api/order", orderRouter)
 
+// Test route
 app.get("/", (req, res) => {
     res.send("API Working")
 })
 
+// Server start
 app.listen(port, () => {
     console.log(`Server Started on http://localhost:${port}`)
 })
