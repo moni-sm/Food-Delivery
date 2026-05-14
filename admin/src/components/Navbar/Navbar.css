@@ -1,12 +1,41 @@
-.navbar{
+.navbar {
+    height: var(--header-height);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 8px 4%;
+    padding: 0 4%;
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--glass-border);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
-.navbar .logo{
-    width: max(10% 80px);
+
+.navbar .logo {
+    width: 120px;
+    filter: drop-shadow(0 0 8px var(--primary-glow));
+    transition: var(--transition);
+    cursor: pointer;
 }
-.navbar .profile{
-    width: 40px;
+
+.navbar .logo:hover {
+    transform: scale(1.05);
+}
+
+.navbar .profile {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 2px solid var(--glass-border);
+    padding: 2px;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.navbar .profile:hover {
+    border-color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px var(--primary-glow);
 }

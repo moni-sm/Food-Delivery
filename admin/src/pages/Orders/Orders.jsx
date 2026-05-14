@@ -10,10 +10,10 @@ const Orders = ({ url }) => {
   const [orders, setOrders] = useState([]);
 
   const fetchAllOrders = async () => {
-    const responce = await axios.get(url + "/api/order/list");
-    if (responce.data.success) {
-      setOrders(responce.data.data);
-      console.log(responce.data.data);
+    const response = await axios.get(url + "/api/order/list");
+    if (response.data.success) {
+      setOrders(response.data.data);
+      console.log(response.data.data);
     } else {
       toast.error("Error")
     }
@@ -33,7 +33,7 @@ const Orders = ({ url }) => {
   }, [])
 
   return (
-    <div className='order add'>
+    <div className='order add page-container'>
       <h3>Order Page</h3>
       <div className="order-list">
         {orders.map((order, index) => (

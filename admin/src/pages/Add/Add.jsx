@@ -11,7 +11,7 @@ const Add = ({url}) => {
     name:"",
     description:"",
     price:"",
-    category:"salad"
+    category:"Salad"
   })
 
   const onChangeHandler = (event) => {
@@ -28,23 +28,23 @@ const Add = ({url}) => {
     formData.append("price",Number(data.price))
     formData.append("category",data.category)
     formData.append("image",image)
-    const responce = await axios.post(`${url}/api/food/add`,formData);
-    if(responce.data.success){
+    const response = await axios.post(`${url}/api/food/add`,formData);
+    if(response.data.success){
       setData({
         name:"",
         description:"",
         price:"",
-        category:"salad"
+        category:"Salad"
       })
       setImage(false)
-      toast.success(responce.data.message)
+      toast.success(response.data.message)
     }else{
-      toast.error(responce.data.message)
+      toast.error(response.data.message)
     }
   }
 
   return (
-    <div className='add'>
+    <div className='add page-container'>
       <form className='flex-col' onSubmit={onSubmitHandler} >
         <div className="add-img-upload flex-col">
           <p>Upload Image</p>
@@ -68,12 +68,12 @@ const Add = ({url}) => {
             <select  onChange={onChangeHandler} name="category" >
               <option value="Salad">Salad</option>
               <option value="Rolls">Rolls</option>
-              <option value="Desert">Desert</option>
-              <option value="Sandwitch">Sandwitch </option>
-              <option value="Cake">Cake </option>
-              <option value="Pure Veg">Pure-Veg </option>
-              <option value="Pasta">Pasta </option>
-              <option value="Noodels">Noodels </option>
+              <option value="Deserts">Deserts</option>
+              <option value="Sandwich">Sandwich</option>
+              <option value="Cake">Cake</option>
+              <option value="Pure Veg">Pure Veg</option>
+              <option value="Pasta">Pasta</option>
+              <option value="Noodles">Noodles</option>
             </select>
           </div>
           <div className="add-price flex-col">

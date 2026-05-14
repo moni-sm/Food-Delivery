@@ -9,9 +9,9 @@ const List = ({url}) => {
     const [list,setList]=useState([]);
 
     const fetchList = async ()=>{
-        const responce = await axios.get(`${url}/api/food/list`)
-        if(responce.data.success){
-            setList(responce.data.data)
+        const response = await axios.get(`${url}/api/food/list`)
+        if(response.data.success){
+            setList(response.data.data)
         }
         else{
             toast.error("Error")
@@ -19,10 +19,10 @@ const List = ({url}) => {
     }
 
     const removeFood = async(foodId)=>{
-        const responce = await axios.post(`${url}/api/food/remove`,{id:foodId});
+        const response = await axios.post(`${url}/api/food/remove`,{id:foodId});
         await fetchList();
-        if(responce.data.success){
-            toast.success(responce.data.message)
+        if(response.data.success){
+            toast.success(response.data.message)
         }else{
             toast.error("Error");
         }
@@ -32,7 +32,7 @@ useEffect(()=>{
 },[])
 
   return (
-   <div className='list add flex-col'>
+   <div className='list add flex-col page-container'>
     <p>All Foods List</p>
     <div className="list-table">
         <div className="list-table-format title">

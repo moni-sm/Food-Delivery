@@ -1,35 +1,98 @@
-.add{
-    width: 70%;
-    margin-left: max(5vw,25px);
-    margin-top: 50px;
-    color: #6d6d6d;
-    font-size: 16px;
+.add {
+    width: 100%;
+    max-width: 800px;
 }
-.add form{
-    gap: 20px;
+
+.add form {
+    background: var(--bg-card);
+    padding: 40px;
+    border-radius: 24px;
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
 }
-.add-img-upload img{
-    width: 120px;
+
+.add-img-upload p, 
+.add-product-name p, 
+.add-product-description p, 
+.add-category p, 
+.add-price p {
+    color: var(--text-muted);
+    font-weight: 500;
+    margin-bottom: 5px;
 }
-.add-product-name, .add-product-description{
-    width: max(40% ,280px);
-}
-.add-product-name input, .add-product-description textarea{
-    padding: 10px;
-}
-.add-category-price{
-    display: flex;
-    gap: 30px;
-}
-.add-category-price select, .add-category-price input{
-    max-width: 120px;
-    padding: 10px;
-}
-.add-button{
-    max-width: 120px;
-    border: none;
-    padding: 10px;
-    background-color: black;
-    color: white;
+
+.add-img-upload img {
+    width: 140px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 12px;
     cursor: pointer;
+    border: 2px dashed var(--glass-border);
+    transition: var(--transition);
+}
+
+.add-img-upload img:hover {
+    border-color: var(--primary);
+    transform: scale(1.02);
+}
+
+.add-product-name input, 
+.add-product-description textarea, 
+.add-category-price select, 
+.add-category-price input {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 12px 18px;
+    color: var(--text-main);
+    outline: none;
+    transition: var(--transition);
+}
+
+.add-product-name input:focus, 
+.add-product-description textarea:focus, 
+.add-category-price select:focus, 
+.add-category-price input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 12px var(--primary-glow);
+}
+
+.add-product-name, .add-product-description {
+    width: 100%;
+}
+
+.add-category-price {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.add-category select, .add-price input {
+    width: 200px;
+}
+
+.add-button {
+    margin-top: 20px;
+    width: 100%;
+    max-width: 200px;
+    border: none;
+    padding: 14px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--primary), #ff6b81);
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 8px 20px var(--primary-glow);
+}
+
+.add-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px var(--primary-glow);
+}
+
+.add-button:active {
+    transform: translateY(0);
 }

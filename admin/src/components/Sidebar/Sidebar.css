@@ -1,33 +1,72 @@
-.sidebar{
-    width: 18%;
-    min-height: 100vh;
-    border: 1.5px solid #a9a9a9;
-    border-top: 0;
-    font-size: max(1vw,10px);
-}
-.sidebar-options{
-    padding-top: 50px;
-    padding-left: 20%;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-.sidebar-option{
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    border: 1px solid #a9a9a9;
-    padding: 8px 10px;
-    border-radius: 3px 0px 0px 3px;
-    cursor: pointer;
-}
-.sidebar-option.active{
-    background-color: #fff0ed;
-    border-color: tomato;
+.sidebar {
+    width: var(--sidebar-width);
+    min-height: calc(100vh - var(--header-height));
+    background: var(--glass-bg);
+    border-right: 1px solid var(--glass-border);
+    backdrop-filter: blur(10px);
+    transition: var(--transition);
 }
 
-@media (max-width:900px) {
-    .sidebar-option p{
+.sidebar-options {
+    padding: 30px 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.sidebar-option {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 14px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    color: var(--text-muted);
+    transition: var(--transition);
+    border: 1px solid transparent;
+}
+
+.sidebar-option img {
+    width: 20px;
+    filter: opacity(0.7);
+    transition: var(--transition);
+}
+
+.sidebar-option p {
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.sidebar-option:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-main);
+    transform: translateX(5px);
+}
+
+.sidebar-option.active {
+    background: linear-gradient(135deg, var(--primary), #ff6b81);
+    color: white;
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 20px var(--primary-glow);
+}
+
+.sidebar-option.active img {
+    filter: brightness(0) invert(1) opacity(1);
+}
+
+@media (max-width: 900px) {
+    .sidebar {
+        width: 80px;
+    }
+    .sidebar-option p {
         display: none;
+    }
+    .sidebar-options {
+        padding: 30px 10px;
+        align-items: center;
+    }
+    .sidebar-option {
+        padding: 15px;
+        justify-content: center;
     }
 }

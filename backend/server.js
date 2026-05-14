@@ -12,7 +12,7 @@ const port = process.env.PORT || 4000;
 
 // ✅ Proper CORS (ONLY THIS, nothing else)
 app.use(cors({
-    origin: ["https://food-delivery-eta-lilac.vercel.app", "http://localhost:5173"],
+    origin: ["https://food-delivery-eta-lilac.vercel.app", "https://food-delivery-frontend-42lk.onrender.com", "https://food-delivery-admin-q9pu.onrender.com", "http://localhost:5173", "http://localhost:5174", "http://localhost:5175"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization", "token"],
     credentials: true
