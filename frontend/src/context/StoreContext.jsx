@@ -7,7 +7,7 @@ export const StoreContext = createContext(null)
 const StoreContextProvider = (props) => {
 
     const [cartItems, setCartItems] = useState({});
-    const url = "https://food-delivery-frontend-42lk.onrender.com";
+    const url = "http://localhost:4000";
     const [token, setToken] = useState("");
     const [food_list, setFoodList] = useState([])
     const [searchQuery, setSearchQuery] = useState("");
@@ -35,7 +35,9 @@ const StoreContextProvider = (props) => {
         for (const item in cartItems) {
             if (cartItems[item] > 0) {
                 let itemInfo = food_list.find((product) => product._id === item);
-                totalAmount += itemInfo.price * cartItems[item];
+                if (itemInfo) {
+                    totalAmount += itemInfo.price * cartItems[item];
+                }
             }
         }
         return totalAmount;
@@ -55,11 +57,16 @@ const StoreContextProvider = (props) => {
             await fetchFoodList();
             if (localStorage.getItem("token")) {
                 setToken(localStorage.getItem("token"));
-                await loadCartData(localStorage.getItem("token"))
             }
         }
         loadData();
     }, [])
+
+    useEffect(() => {
+        if (token) {
+            loadCartData(token);
+        }
+    }, [token])
 
 
     const contextValue = {

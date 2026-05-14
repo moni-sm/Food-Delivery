@@ -32,7 +32,7 @@ const placeOrder = async (req, res) => {
             price_data: {
                 currency: "inr",
                 product_data: {
-                    name: "Delivery Chargers"
+                    name: "Delivery Charges"
                 },
                 unit_amount: 2 * 100 * 80
             },
@@ -43,7 +43,7 @@ const placeOrder = async (req, res) => {
             line_items: line_items,
             mode: 'payment',
             success_url: `${frontend_url}/verify?success=true&orderId=${newOrder._id}`,
-            cancel_url: `${frontend_url}/verify?success=falsee&orderId=${newOrder._id}`,
+            cancel_url: `${frontend_url}/verify?success=false&orderId=${newOrder._id}`,
         })
         res.json({ success: true, session_url: session.url })
     } catch (error) {
@@ -86,7 +86,7 @@ const listOrders = async(req,res)=>{
         res.json({success:true,data:orders})
     }catch(error){
         console.log(error);
-        res.json({success:true,message:"Error"});
+        res.json({success:false,message:"Error"});
     }
 }
 

@@ -9,12 +9,14 @@ const Navbar = ({setShowLogin}) => {
 
 const [menu,setMenu]=useState("menu");
 const [isProfileOpen, setIsProfileOpen] = useState(false);
-const {getTotalCartAmount,token,setToken, searchQuery, setSearchQuery} = useContext(StoreContext);
+const {getTotalCartAmount,token,setToken, setCartItems, searchQuery, setSearchQuery} = useContext(StoreContext);
 
 const navigate = useNavigate();
 const logout = () =>{
   localStorage.removeItem("token");
   setToken("");
+  setCartItems({});
+  setSearchQuery("");
   navigate("/")
 }
 
@@ -61,7 +63,7 @@ const handleMenuClick = (menuName, id) => {
           <div className='navbar-profile' onClick={() => setIsProfileOpen(!isProfileOpen)}>
             <img src={assets.profile_icon} alt="" />
             <ul className={`nav-profile-dropdown ${isProfileOpen ? 'active-dropdown' : ''}`}>
-              <li onClick={()=>navigate('/myorders')}><img src={assets.bag_icon} alt="" /><p>Orders</p></li>
+              <li onClick={()=>{navigate('/myorders'); setIsProfileOpen(false)}}><img src={assets.bag_icon} alt="" /><p>Orders</p></li>
               <hr />
               <li onClick={logout}><img src={assets.logout_icon} alt="" /><p>Logout</p></li>
             </ul>

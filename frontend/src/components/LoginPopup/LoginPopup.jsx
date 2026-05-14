@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './LoginPopup.css'
 import { assets } from '../../assets/assets'
 import { StoreContext } from '../../context/StoreContext'
@@ -14,6 +14,14 @@ const LoginPopup = ({ setShowLogin }) => {
     password: ""
   })
 
+  useEffect(() => {
+    setData({
+      name: "",
+      email: "",
+      password: ""
+    })
+  }, [currState])
+
   const onChangeHandler = (event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -21,23 +29,31 @@ const LoginPopup = ({ setShowLogin }) => {
 
   }
 
+  const [isLoading, setIsLoading] = useState(false)
+
   const onLogin = async (event) => {
     event.preventDefault()
+    setIsLoading(true)
     let newUrl = url;
     if(currState==='Login'){
       newUrl += "/api/user/login"
     }else{
       newUrl += "/api/user/register"
     }
-    const response = await axios.post(newUrl,data);
-
-    if(response.data.success){
-      setToken(response.data.token);
-      localStorage.setItem("token",response.data.token)
-      setShowLogin(false)
-    }
-    else{
-      alert(response.data.message)
+    try {
+      const response = await axios.post(newUrl,data);
+      if(response.data.success){
+        setToken(response.data.token);
+        localStorage.setItem("token",response.data.token)
+        setShowLogin(false)
+      }
+      else{
+        alert(response.data.message)
+      }
+    } catch (error) {
+      alert("Something went wrong. Please try again.")
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -56,12 +72,14 @@ const LoginPopup = ({ setShowLogin }) => {
               <input name='name' onChange={onChangeHandler} value={data.name} type="text" placeholder='Your Name' required />
           }
           <input type="email" onChange={onChangeHandler} name='email' value={data.email} placeholder='Your Email' required />
-          <input name='password' onChange={onChangeHandler} value={data.password} type="password" placeholder='Password' required />
+          <input name='password' onChange={onChangeHandler} value={data.password} type="password" placeholder='Password' minLength={8} required />
         </div>
-        <button type='submit'>{currState === "Sign Up" ? "Create Account" : "Login"}</button>
+        <button type='submit' disabled={isLoading}>
+          {isLoading ? "Processing..." : (currState === "Sign Up" ? "Create Account" : "Login")}
+        </button>
         <div className="login-popup-condition">
           <input type="checkbox" required />
-          <p>By Continueing , i agree to the terms of use & privacy policy.</p>
+          <p>By continuing, I agree to the terms of use & privacy policy.</p>
         </div>
         {currState === "Login" ?
           <p>Create a new account? <span onClick={() => setCurrState("Sign Up")}>Click here</span></p>

@@ -2,7 +2,6 @@ import userModel from "../models/userModel.js";
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs';
 import validator from 'validator'
-import { response } from "express";
 
 //login user
 const loginUser = async(req,res)=>{
@@ -28,7 +27,7 @@ const loginUser = async(req,res)=>{
 }
 
 const createToken = (id) => {
-    return jwt.sign({id},process.env.JWT_SECRET);
+    return jwt.sign({id},process.env.JWT_SECRET, { expiresIn: '7d' });
 }
 
 //register user
@@ -38,14 +37,14 @@ const registerUser = async(req,res)=>{
     try{
         const exists = await userModel.findOne({email});
         if(exists){
-            return res.json({success:false,message:"User alreay exists"})
+            return res.json({success:false,message:"User already exists"})
         }
-        //validating email formate and a strong password
+        //validating email format and a strong password
         if(!validator.isEmail(email)){
-            return res.json({success:false,message:"Please enter a valid Email"}); 
+            return res.json({success:false,message:"Please enter a valid email"}); 
         }
         if(password.length<8){
-            return res.json({success:false,message:"Please a enter a strong password"});
+            return res.json({success:false,message:"Please enter a strong password"});
         }
 
         //hashing user password
